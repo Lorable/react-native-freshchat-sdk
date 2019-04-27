@@ -6,48 +6,48 @@ const _eventHandlers = {};
 import {
     Platform
 } from 'react-native';
-const { version } = require('../package.json');
+let { version } = require('../package.json');
 
-const rn_sdk_version_placeholder = "{{rn-version}}";
-const platform_name_placeholder = "{{platform}}";
-const platform_sdk_version_placeholder = "{{platform-version}}";
-const android_platform_name = "android";
-const ios_platform_name = "ios";
-const sdk_version_placeholder = "rn-" + rn_sdk_version_placeholder + "-" + platform_name_placeholder + "-" + platform_sdk_version_placeholder;
+let rn_sdk_version_placeholder = "{{rn-version}}";
+let platform_name_placeholder = "{{platform}}";
+let platform_sdk_version_placeholder = "{{platform-version}}";
+let android_platform_name = "android";
+let ios_platform_name = "ios";
+let sdk_version_placeholder = "rn-" + rn_sdk_version_placeholder + "-" + platform_name_placeholder + "-" + platform_sdk_version_placeholder;
 
-const isAndroid = function() {
+let isAndroid = function() {
     return !isIos();
 };
 
-const isIos = function() {
+let isIos = function() {
     return Platform.OS === 'ios';
 };
 
-const registerForRestoreIdUpdates = function (register) {
+let registerForRestoreIdUpdates = function (register) {
     RNFreshchatSdk.registerForRestoreIdUpdates(register);
 };
 
-const registerForMessageCountUpdates = function (register) {
+let registerForMessageCountUpdates = function (register) {
     RNFreshchatSdk.registerForMessageCountUpdates(register);
 };
 
-const registerUserInteractionListerner = function (register) {
+let registerUserInteractionListerner = function (register) {
     RNFreshchatSdk.registerUserInteractionListerner(register);
 };
 
-const registerForOpeningLink = function (register) {
+let registerForOpeningLink = function (register) {
     RNFreshchatSdk.registerForOpeningLink(register);
 };
 
-const registerForUserActions = function (register) {
+let registerForUserActions = function (register) {
     RNFreshchatSdk.registerForUserActions(register);
 };
 
-const registerNotificationClickListener = function (register) {
+let registerNotificationClickListener = function (register) {
     RNFreshchatSdk.registerNotificationClickListener(register);
 };
 
-const enableNativeListenerForType = function (type, enable) {
+let enableNativeListenerForType = function (type, enable) {
     switch (type) {
         case RNFreshchatSdk.ACTION_UNREAD_MESSAGE_COUNT_CHANGED:
             registerForMessageCountUpdates(enable);
@@ -70,7 +70,7 @@ const enableNativeListenerForType = function (type, enable) {
     }
 };
 
-const eventsList = function(key) {
+let eventsList = function(key) {
     let events = {
         EVENT_EXTERNAL_LINK_CLICKED        : RNFreshchatSdk.ACTION_OPEN_LINKS,
         EVENT_UNREAD_MESSAGE_COUNT_CHANGED : RNFreshchatSdk.ACTION_UNREAD_MESSAGE_COUNT_CHANGED,
@@ -220,9 +220,9 @@ module.exports = {
     },
 
     addEventListener: function (type, handler) {
-        listener = emitter.addListener(type, handler);
+        let listener = emitter.addListener(type, handler);
 
-        shouldStartNativeListener = false;
+        let shouldStartNativeListener = false;
         if (!_eventHandlers[type]) {
             _eventHandlers[type] = new Map();
             shouldStartNativeListener = true;
